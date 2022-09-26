@@ -1,0 +1,62 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+@mixin box($width,$height) {
+  width: $width;
+  height: $height;
+}
+@mixin flex($justify:center,$align:center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+#root{
+  width: 100vw;
+  height: 100vh;
+  background-color: skyblue;
+}
+
+header{
+  @include box(100%,8%);
+  background-color: #fff;
+}
+
+main{
+  @include box(100%,92%);
+  @include flex;
+  >div{
+    @include box(500px,700px);
+    background-color: #fff;
+    >div:nth-child(2){
+      @include box(100%,10%);
+      background-color: pink;
+    }
+  }
+}
+#list{
+  @include box(100%,90%);
+  @include flex(space-around,center);
+  flex-direction: column;
+  background-color: gray;
+  >div{
+    @include box(90%,6%);
+    @include flex;
+    background-color: #fff;
+    >div:nth-child(1){
+      @include box(60%,100%);
+    }
+    >div:nth-child(2){
+      @include box(20%,100%);
+    }
+    >div:nth-child(3){
+      @include box(20%,100%);
+    }
+    >div{
+      @include flex;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/mainPage.css" />
+    <title>main</title>
+  </head>
+  <body>
+    <div id="root">
+      <header>
+        <div><%= id %> 님</div>
+      </header>
+      <main>
+        <div>
+          <div id="list">
+            <% for(let i=0; i<10; i++) {%>
+            <div>
+              <div><%= list[i].header %></div>
+              <div><%= list[i].user_id %></div>
+              <div><%= list[i].update_date.toLocaleDateString() %></div>
+            </div>
+            <% } %>
+          </div>
+          <div></div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
