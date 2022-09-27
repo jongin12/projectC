@@ -54,6 +54,7 @@ main{
     }
     >div:nth-child(3){
       @include box(20%,100%);
+      font-size: 14px;
     }
     >div{
       @include flex;

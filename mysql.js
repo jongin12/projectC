@@ -29,6 +29,40 @@ const mysql = {
     });
     return arr;
   },
+  signIntest: (id, pw, name) => {
+    var sql = `SELECT * FROM user_info where user_id =?`;
+    var arr = {};
+    db.query(sql, [id], function (err, results, fields) {
+      if (err) {
+        console.log(err);
+      }
+      if (results[0]) {
+        arr.id = "error";
+      } else {
+        arr.id = "ok";
+      }
+    });
+    var sql = `SELECT * FROM user_info where user_name =?`;
+    db.query(sql, [name], function (err, results, fields) {
+      if (err) {
+        console.log(err);
+      }
+      if (results[0]) {
+        arr.name = "error";
+      } else {
+        arr.name = "ok";
+      }
+    });
+    return arr;
+  },
+  signIn: (id, pw, name) => {
+    var sql = `INSERT INTO user_info (user_id,user_pw,user_name) values (?,?,?)`;
+    db.query(sql, [id, pw, name], function (err, results, fields) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  },
 };
 
 module.exports = mysql;

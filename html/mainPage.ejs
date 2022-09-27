@@ -7,7 +7,16 @@
   <body>
     <div id="root">
       <header>
-        <div><%= id %> 님</div>
+        <div>안녕하세요 <%= admin %> 님</div>
+        <% if(admin === '0') { %>
+        <form action="/myPage" method="post">
+          <input type="submit" value="마이페이지" />
+        </form>
+        <% } else if(admin === '1') {%>
+        <form action="/admin" method="post">
+          <input type="submit" value="관리자페이지" />
+        </form>
+        <% }%>
       </header>
       <main>
         <div>
@@ -16,7 +25,7 @@
             <div>
               <div><%= list[i].header %></div>
               <div><%= list[i].user_id %></div>
-              <div><%= list[i].update_date.toLocaleDateString() %></div>
+              <div><%= list[i].update_date.toLocaleString() %></div>
             </div>
             <% } %>
           </div>
