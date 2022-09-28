@@ -31,12 +31,14 @@ main{
   >div{
     @include box(500px,700px);
     background-color: #fff;
+    border-radius: 15px;
     >div:nth-child(2){
       @include box(100%,10%);
       background-color: pink;
     }
   }
 }
+
 #list{
   @include box(100%,90%);
   @include flex(space-around,center);
@@ -59,5 +61,33 @@ main{
     >div{
       @include flex;
     }
+  }
+}
+
+#make{
+  @include box(100%,100%);
+  @include flex;
+  flex-direction: column;
+  >div:nth-child(1){
+    @include box(100%,8%);
+    @include flex;
+    >input{
+      @include box(60%,50%);
+    }
+    >p{
+      @include box(30%,50%);
+      @include flex;
+    }
+  }
+  >div:nth-child(2){
+    @include box(100%,84%);
+    @include flex;
+    >input{
+      @include box(90%,100%);
+    }
+  }
+  >div:nth-child(3){
+    @include box(100%,8%);
+    @include flex;
   }
 }

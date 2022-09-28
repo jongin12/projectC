@@ -2,7 +2,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="css/mainPage.css" />
-    <title>main</title>
+    <title>make</title>
   </head>
   <body>
     <div id="root">
@@ -20,20 +20,18 @@
       </header>
       <main>
         <div>
-          <div id="list">
-            <% for(let i=0; i<10; i++) {%>
+          <form id="make" action="/main/make/test" method="post">
             <div>
-              <div><%= list[i].header %></div>
-              <div><%= list[i].user_id %></div>
-              <div><%= list[i].update_date.toLocaleString() %></div>
+              <input type="text" />
+              <p>작성자 : <%= id %></p>
             </div>
-            <% } %>
-          </div>
-          <div>
-            <form action="/main/make" method="post">
-              <input type="submit" value="글 작성" />
-            </form>
-          </div>
+            <div>
+              <input type="text" />
+            </div>
+            <div>
+              <input type="submit" value="작성" />
+            </div>
+          </form>
         </div>
       </main>
     </div>

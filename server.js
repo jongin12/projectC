@@ -85,6 +85,20 @@ app.post("/signIn/test", function (req, res) {
   }, 1000);
 });
 
+app.post("/main/make", function (req, res) {
+  fs.readFile("html/makePage.ejs", "utf8", function (err, data) {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.end(
+      ejs.render(data, {
+        id: req.session.userid,
+        admin: req.session.admin,
+      })
+    );
+  });
+});
+
+app.post("/main/make/test", function (req, res) {});
+
 app.listen(3000, function () {
   console.log("server start..");
 });
