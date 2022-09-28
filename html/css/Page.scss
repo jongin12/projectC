@@ -29,12 +29,13 @@ main{
   @include box(100%,92%);
   @include flex;
   >div{
-    @include box(500px,700px);
+    @include box(400px,700px);
     background-color: #fff;
     border-radius: 15px;
     >div:nth-child(2){
       @include box(100%,10%);
-      background-color: pink;
+      @include flex;
+      background-color: white;
     }
   }
 }
