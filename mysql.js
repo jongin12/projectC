@@ -23,15 +23,15 @@ const mysql = {
     });
   },
   list: () => {
-    var sql = `SELECT * FROM list ORDER BY date desc LIMIT 10`;
-    var arr = [];
-    db.query(sql, function (err, results, fields) {
-      if (err) {
-        console.log(err);
-      }
-      arr.push(results);
+    return new Promise((resolve, reject) => {
+      var sql = `SELECT * FROM list ORDER BY date desc LIMIT 10`;
+      db.query(sql, function (err, results, fields) {
+        if (err) {
+          console.log(err);
+        }
+        resolve(results);
+      });
     });
-    return arr;
   },
   signIntest: (id, pw, name) => {
     return new Promise((resolve, reject) => {

@@ -52,16 +52,17 @@ app.post("/login", function (req, res) {
 });
 
 app.get("/main", function (req, res) {
-  var list = mysql.list();
-  fs.readFile("html/mainPage.ejs", "utf8", function (err, data) {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end(
-      ejs.render(data, {
-        id: req.session.userid,
-        admin: req.session.admin,
-        list: list[0],
-      })
-    );
+  mysql.list().then((value) => {
+    fs.readFile("html/mainPage.ejs", "utf8", function (err, data) {
+      res.writeHead(200, { "Content-Type": "text/html" });
+      res.end(
+        ejs.render(data, {
+          id: req.session.userid,
+          admin: req.session.admin,
+          list: value,
+        })
+      );
+    });
   });
 });
 
@@ -69,23 +70,22 @@ app.get("/signIn", function (req, res) {
   res.sendFile(__dirname + "/html/signInPage.html");
 });
 
-app.post("/signIn/test", function (req, res) {
+app.post("/signIn/test", async function (req, res) {
   var id = String(req.body.id);
   var pw = String(req.body.pw);
   var name = String(req.body.name);
-  mysql.signIntest(id, pw, name).then((value) => {
-    console.log(value);
-    if (value.id === "error" && value.name === "error") {
-      alert(res, "<script>alert('ID,NAME 중복')</script>");
-    } else if (value.id === "error" && value.name === "ok") {
-      alert(res, "<script>alert('ID 중복')</script>");
-    } else if (value.id === "ok" && value.name === "error") {
-      alert(res, "<script>alert('NAME 중복')</script>");
-    } else if (value.id === "ok" && value.name === "ok") {
-      mysql.signIn(id, pw, name);
-      console.log("ok");
-    }
-  });
+  const test = await mysql.signIntest(id, pw, name);
+  console.log(test);
+  if (test.id === "error" && test.name === "error") {
+    alert(res, "<script>alert('ID,NAME 중복')</script>");
+  } else if (test.id === "error" && test.name === "ok") {
+    alert(res, "<script>alert('ID 중복')</script>");
+  } else if (test.id === "ok" && test.name === "error") {
+    alert(res, "<script>alert('NAME 중복')</script>");
+  } else if (test.id === "ok" && test.name === "ok") {
+    mysql.signIn(id, pw, name);
+    console.log("ok");
+  }
 });
 
 app.get("/main/make", function (req, res) {
